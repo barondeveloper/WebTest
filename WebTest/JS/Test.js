@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function (window) {
     if (!window.jQuery) {
         //no jQuery
         var script = document.createElement('script');
@@ -16,7 +16,15 @@
     };
 
     loadData(settings, function (url, pixel) {
-        $("#thediv").html("pixel= " + pixel + "<br/> url= " + url);
+        var height = screen.height * 0.9 + 'px';
+        var width = screen.width * 0.7 + 'px';
+        window.name = 'urlPopUp';
+        var popupWindow = new Object();
+        popupWindow.closed = true;
+        popupWindow = window.open('', '_blank', `toolbar=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=${width}px,height=${height}px`);
+        popupWindow.location = url;
+
+        //$("#thediv").html("pixel= " + pixel + "<br/> url= " + url);
     });
 
     function loadData(settings, callback) {
@@ -28,5 +36,5 @@
             });
         }, 500);
     }
-} ())
+}(window))
 
