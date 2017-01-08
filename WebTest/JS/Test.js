@@ -7,11 +7,14 @@
         document.getElementsByTagName('head')[0].appendChild(script);
     }
 
+    var isLocal=location.hostname==='localhost';
     var settings = {
         ua: navigator.userAgent,// 'Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64%3B%20rv%3A13.0)%20Gecko%2F20100101%20Firefox%2F13.0.1',
-        url: 'http%3A%2F%2Ftest.com%2F%3Fq%3Dbest%2Bdeals',//location.href,//
+        url: isLocal ? 'http%3A%2F%2Ftest.com%2F%3Fq%3Dbest%2Bdeals' : location.href,
+        query: isLocal ? 'test.com' : location.hostname,
         subid: 'test',
-        query: 'best+deals'
+        feed: "76743",
+        auth: "LdhZFu"
     };
 
     loadData(settings, function (url, pixel) {
